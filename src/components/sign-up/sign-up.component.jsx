@@ -22,9 +22,9 @@ const SignUp = () => {
       const { user } = await auth.createUserWithEmailAndPassword(
         signUpForm.email,
         signUpForm.password
-	  );
-	  console.log('signup form value ', signUpForm.displayName)
-      createUserProfileDocument(user, signUpForm.displayName);
+      );
+      const { displayName } = signUpForm
+      createUserProfileDocument(user, {displayName});
       setSignUpForm({
         displayName: "",
         email: "",
@@ -36,9 +36,8 @@ const SignUp = () => {
     }
   };
 
-  const handleChange = e => {
-	const { name, value } = e.target;
-	console.log('sign up form on change', signUpForm)
+    const handleChange = e => {
+	  const { name, value } = e.target;
     setSignUpForm({ ...signUpForm, [name]: value });
   };
 

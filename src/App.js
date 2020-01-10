@@ -30,6 +30,9 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    console.log('current user is ', currentUser)
+  }, [currentUser])
   return (
     <div>
       <BrowserRouter>

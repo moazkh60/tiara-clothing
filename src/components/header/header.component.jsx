@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useSelector } from 'react';
 import { Link } from 'react-router-dom';
 import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/logo/tiara.svg';
 import { auth } from '../../firebase/firebase.utils'
 
-const Header = ({ currentUser }) => {
+const Header = () => {
+
+	const user = useSelector(state => state.user.currentUser )
+
 	return (
 		<div className="header">
 			<Link className='logo-container' to='/'>

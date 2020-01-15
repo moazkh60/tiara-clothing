@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useDispatch } from 'react-redux';
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -9,6 +10,8 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUserAction } from './reducer/user/user.actions';
 
 function App() {
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {

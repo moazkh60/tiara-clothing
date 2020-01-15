@@ -1,4 +1,5 @@
-import React, { useSelector } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/logo/tiara.svg';
@@ -21,7 +22,7 @@ const Header = () => {
 					CONTACT
 				</Link>
 				{
-					currentUser ? 
+					user ? 
 					<div className='option' onClick={() => auth.signOut()}>SIGN OUT</div> :
 					<Link className='option' to='/signin'>SIGN IN </Link>
 				}

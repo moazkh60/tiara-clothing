@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import "./App.css";
 import HomePage from "./pages/homepage/homepage.component";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInSignUpPage from "./pages/signInSignUp/signInSignUp.component";
@@ -12,6 +12,8 @@ import { setCurrentUserAction } from './reducer/user/user.actions';
 function App() {
 
   const dispatch = useDispatch()
+
+  const user = useSelector(state => state.user.currentUser )
 
   useEffect(() => {
     let unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -39,7 +41,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignInSignUpPage} />
+          <Route exact path="/signin" render={() => user ? ( <Redirect to='/' /> ) : (
+            <SignInSignUpPage />
+          )} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -9,6 +9,7 @@ import SignInSignUpPage from "./pages/signInSignUp/signInSignUp.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUserAction } from './reducer/user/user.actions';
 import { selectCurrentUser } from "./reducer/user/user.selectors";
+import CheckoutPage from "./pages/checkout/checkout.component";
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <Route exact path="/signin" render={() => user ? ( <Redirect to='/' /> ) : (
             <SignInSignUpPage />
           )} />

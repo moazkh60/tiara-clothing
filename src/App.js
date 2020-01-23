@@ -8,12 +8,13 @@ import Header from "./components/header/header.component";
 import SignInSignUpPage from "./pages/signInSignUp/signInSignUp.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUserAction } from './reducer/user/user.actions';
+import { selectCurrentUser } from "./reducer/user/user.selectors";
 
 function App() {
 
   const dispatch = useDispatch()
 
-  const user = useSelector(state => state.user.currentUser )
+  const user = useSelector(state => selectCurrentUser(state) )
 
   useEffect(() => {
     let unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {

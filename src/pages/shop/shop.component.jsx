@@ -1,14 +1,17 @@
-import React from 'react';
-import CollectionPreview from '../../components/preview-collection/preview-collection.component.jsx';
-import CollectionsOverview from '../../components/collections-overview/collections-overview.component.jsx';
+import React from "react";
+import { Route, useRouteMatch } from "react-router-dom";
+import CollectionsOverview from "../../components/collections-overview/collections-overview.component.jsx";
+import CollectionPage from "../collection/collection.component.jsx";
 
 const ShopPage = () => {
-	
-	return (  
-		<div className="shop-page">
-			<CollectionsOverview />
-		</div>
-	);
-}
- 
+  const match = useRouteMatch();
+
+  return (
+    <div className="shop-page">
+      <Route exact path={`${match.path}`} component={CollectionsOverview} />
+      <Route path={`${match.path}/:categoryId`} component={CollectionPage} />
+    </div>
+  );
+};
+
 export default ShopPage;
